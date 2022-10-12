@@ -16,6 +16,7 @@ public class MainForm extends JFrame{
     private JButton buttonRotate;
     private JButton buttonCompression;
     private JButton buttonTransfer;
+    private JComboBox comboBox1;
 
     public MainForm() {
         this.setTitle("Affine transformations");
