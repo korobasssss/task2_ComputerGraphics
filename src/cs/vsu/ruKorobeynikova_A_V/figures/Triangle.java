@@ -1,11 +1,11 @@
 package cs.vsu.ruKorobeynikova_A_V.figures;
 
 public class Triangle {
-    double x1; double y1;
-    double x2; double y2;
-    double x3; double y3;
+    int x1; int y1;
+    int x2; int y2;
+    int x3; int y3;
 
-    public Triangle(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4){
+    public Triangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4){
         this.x1 = x1;
         this.x2 = x2;
         this.x3 = x3;
@@ -15,22 +15,22 @@ public class Triangle {
     }
 
 
-    public double getX1() {
+    public int getX1() {
         return x1;
     }
-    public double getX2() {
+    public int getX2() {
         return x2;
     }
-    public double getX3() {
+    public int getX3() {
         return x3;
     }
-    public double getY1() {
+    public int getY1() {
         return y1;
     }
-    public double getY2() {
+    public int getY2() {
         return y2;
     }
-    public double getY3() {
+    public int getY3() {
         return y3;
     }
 }

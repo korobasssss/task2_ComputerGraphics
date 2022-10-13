@@ -1,9 +1,12 @@
 package cs.vsu.ruKorobeynikova_A_V;
 
+import cs.vsu.ruKorobeynikova_A_V.figures.Rectangle;
 import ru.vsu.cs.util.SwingUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainForm extends JFrame{
     private JPanel panelMain;
@@ -16,7 +19,7 @@ public class MainForm extends JFrame{
     private JButton buttonRotate;
     private JButton buttonCompression;
     private JButton buttonTransfer;
-    private JComboBox comboBox1;
+    private JComboBox choiceFigureBox;
     private JPanel menuPanel;
     private JPanel fieldPanel;
 
@@ -35,6 +38,7 @@ public class MainForm extends JFrame{
         fieldPanel = new DrawField();
     }
 
+
     class DrawField extends JPanel {
         @Override
         public void paintComponent(Graphics g) {
@@ -42,7 +46,15 @@ public class MainForm extends JFrame{
 
             Graphics2D g2 = (Graphics2D) g;
             drawOxAndOy(g2);
-
+            g2.setColor(Color.black);
+            if (choiceFigureBox.getSelectedItem() == "прямоугольник") {
+                int[][] points = {
+                        {fieldPanel.getWidth() / 2,  fieldPanel.getWidth() / 2,  fieldPanel.getWidth() / 2 + 100, fieldPanel.getWidth() / 2 + 100},
+                        {fieldPanel.getHeight() / 2, fieldPanel.getHeight() / 2 - 50,fieldPanel.getHeight() / 2 - 50,fieldPanel.getHeight() / 2}
+                };
+                drawRectangle(g2, points);
+            }
+            repaint();
         }
 
         public void drawOxAndOy(Graphics2D g2) {
@@ -52,6 +64,14 @@ public class MainForm extends JFrame{
             g2.setFont(g2.getFont().deriveFont(8f));
             g2.drawLine(fieldPanel.getWidth() / 2, 0, fieldPanel.getWidth() / 2, fieldPanel.getHeight());
             g2.drawLine(0, fieldPanel.getHeight() / 2, fieldPanel.getWidth(), fieldPanel.getHeight() / 2);
+        }
+
+        public void drawRectangle(Graphics2D g2, int[][] points) {
+            Rectangle rect = new Rectangle(points);
+            g2.drawLine(rect.getX1(), rect.getY1(), rect.getX2(), rect.getY2());
+            g2.drawLine(rect.getX2(), rect.getY2(),  rect.getX3(), rect.getY3());
+            g2.drawLine(rect.getX3(), rect.getY3(), rect.getX4(), rect.getY4());
+            g2.drawLine(rect.getX4(), rect.getY4(), rect.getX1(), rect.getY1());
         }
     }
 
