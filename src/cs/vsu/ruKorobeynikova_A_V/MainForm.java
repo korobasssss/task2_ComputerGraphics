@@ -37,21 +37,21 @@ public class MainForm extends JFrame{
 
     class DrawField extends JPanel {
         @Override
-        public void paintComponents(Graphics g) {
-            super.paintComponents(g);
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
 
             Graphics2D g2 = (Graphics2D) g;
-            draw(g2);
+            drawOxAndOy(g2);
 
         }
 
-        public void draw(Graphics2D g2) {
+        public void drawOxAndOy(Graphics2D g2) {
             //рисуем систему координат (оси оХ и оУ)
 
             g2.setColor(Color.blue);
             g2.setFont(g2.getFont().deriveFont(8f));
-            g2.drawLine(350, 0, 350, 700);
-            g2.drawLine(0, 350, 700, 350);
+            g2.drawLine(fieldPanel.getWidth() / 2, 0, fieldPanel.getWidth() / 2, fieldPanel.getHeight());
+            g2.drawLine(0, fieldPanel.getHeight() / 2, fieldPanel.getWidth(), fieldPanel.getHeight() / 2);
         }
     }
 
