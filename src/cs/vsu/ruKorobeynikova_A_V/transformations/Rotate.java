@@ -31,6 +31,8 @@ public class Rotate {
         for (int i = 0; i < arr2.length; i++) {
             cell += (arr1.get(row)[i] - arr1.get(0)[i]) * arr2[i][col];
         }
-        return (int) cell + arr1.get(0)[col];
+        return (int) Math.round(cell + arr1.get(0)[col]);
     }
+
+
 }

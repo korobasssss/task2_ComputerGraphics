@@ -1,7 +1,10 @@
 package cs.vsu.ruKorobeynikova_A_V;
 
 import cs.vsu.ruKorobeynikova_A_V.figures.Rectangle;
+import cs.vsu.ruKorobeynikova_A_V.transformations.Move;
 import cs.vsu.ruKorobeynikova_A_V.transformations.Rotate;
+import cs.vsu.ruKorobeynikova_A_V.transformations.Scaling;
+import cs.vsu.ruKorobeynikova_A_V.transformations.Stretch;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,16 +17,17 @@ public class MainForm extends JFrame{
     private JPanel panelMain;
     private JTextField textFieldScale;
     private JTextField textFieldRotate;
-    private JTextField textFieldCompression;
     private JButton buttonClean;
     private JButton buttonScale;
     private JButton buttonRotate;
-    private JButton buttonCompression;
+    private JButton buttonStretch;
     private JButton buttonTransfer;
     private JPanel menuPanel;
     private JPanel fieldPanel;
     private JTextField textFieldTransferX;
     private JTextField textFieldTransferY;
+    private JTextField textFieldStretchX;
+    private JTextField textFieldStretchY;
 
 
     List<int[]> points = new ArrayList<>();
@@ -51,10 +55,32 @@ public class MainForm extends JFrame{
         });
 
         buttonClean.addActionListener(e -> {
-            points.set(0, new int[]{fieldPanel.getWidth() / 2, fieldPanel.getHeight() / 2, 1});
-            points.set(0, new int[]{fieldPanel.getWidth() / 2, fieldPanel.getHeight() / 2, 1});
-            points.set(0, new int[]{fieldPanel.getWidth() / 2, fieldPanel.getHeight() / 2, 1});
-            points.set(0, new int[]{fieldPanel.getWidth() / 2, fieldPanel.getHeight() / 2, 1});
+            points.clear();
+            points.add(new int[]{fieldPanel.getWidth() / 2, fieldPanel.getHeight() / 2, 1});
+            points.add(new int[]{fieldPanel.getWidth() / 2, fieldPanel.getHeight() / 2 - 100, 1});
+            points.add(new int[]{fieldPanel.getWidth() / 2 + 150, fieldPanel.getHeight() / 2 - 100, 1});
+            points.add(new int[]{fieldPanel.getWidth() / 2 + 150, fieldPanel.getHeight() / 2, 1});
+            fieldPanel.repaint();
+        });
+
+        buttonScale.addActionListener(e -> {
+            Scaling scale = new Scaling(Integer.parseInt(textFieldScale.getText()), Integer.parseInt(textFieldScale.getText()));
+            scale.scalingFigure(points);
+
+            fieldPanel.repaint();
+        });
+
+        buttonStretch.addActionListener(e -> {
+            Stretch stretch = new Stretch(Integer.parseInt(textFieldStretchX.getText()), Integer.parseInt(textFieldStretchY.getText()));
+            stretch.stretchFigure(points);
+
+            fieldPanel.repaint();
+        });
+
+        buttonTransfer.addActionListener(e -> {
+            Move move = new Move(Integer.parseInt(textFieldTransferX.getText()), Integer.parseInt(textFieldTransferY.getText()));
+            move.moveFigure(points);
+
             fieldPanel.repaint();
         });
     }
