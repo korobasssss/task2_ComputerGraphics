@@ -5,7 +5,7 @@ import java.util.List;
 public class Rotate {
     double alpha;
 
-    public Rotate(int alpha) {
+    public Rotate(double alpha) {
         this.alpha = -(alpha * Math.PI / 180);
     }
 

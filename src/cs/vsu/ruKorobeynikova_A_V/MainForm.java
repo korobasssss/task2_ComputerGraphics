@@ -28,6 +28,7 @@ public class MainForm extends JFrame{
     private JTextField textFieldTransferY;
     private JTextField textFieldStretchX;
     private JTextField textFieldStretchY;
+    private JButton buttonDoingAllWhatThereIs;
 
 
     List<int[]> points = new ArrayList<>();
@@ -64,23 +65,43 @@ public class MainForm extends JFrame{
         });
 
         buttonScale.addActionListener(e -> {
-            Scaling scale = new Scaling(Integer.parseInt(textFieldScale.getText()), Integer.parseInt(textFieldScale.getText()));
+            Scaling scale = new Scaling(Double.parseDouble(textFieldScale.getText()), Double.parseDouble(textFieldScale.getText()));
             scale.scalingFigure(points);
 
             fieldPanel.repaint();
         });
 
         buttonStretch.addActionListener(e -> {
-            Stretch stretch = new Stretch(Integer.parseInt(textFieldStretchX.getText()), Integer.parseInt(textFieldStretchY.getText()));
+            Stretch stretch = new Stretch(Double.parseDouble(textFieldStretchX.getText()), Double.parseDouble(textFieldStretchY.getText()));
             stretch.stretchFigure(points);
 
             fieldPanel.repaint();
         });
 
         buttonTransfer.addActionListener(e -> {
-            Move move = new Move(Integer.parseInt(textFieldTransferX.getText()), Integer.parseInt(textFieldTransferY.getText()));
+            Move move = new Move(Double.parseDouble(textFieldTransferX.getText()), Double.parseDouble(textFieldTransferY.getText()));
             move.moveFigure(points);
 
+            fieldPanel.repaint();
+        });
+
+        buttonDoingAllWhatThereIs.addActionListener(e -> {
+            if (!textFieldScale.getText().equals("")) {
+                Scaling scale = new Scaling(Double.parseDouble(textFieldScale.getText()), Double.parseDouble(textFieldScale.getText()));
+                scale.scalingFigure(points);
+            }
+            if (!textFieldTransferY.getText().equals("") || !textFieldTransferX.getText().equals("")) {
+                Move move = new Move(Double.parseDouble(textFieldTransferX.getText()), Double.parseDouble(textFieldTransferY.getText()));
+                move.moveFigure(points);
+            }
+            if (!textFieldStretchY.getText().equals("") || !textFieldStretchX.getText().equals("")) {
+                Stretch stretch = new Stretch(Double.parseDouble(textFieldStretchX.getText()), Double.parseDouble(textFieldStretchY.getText()));
+                stretch.stretchFigure(points);
+            }
+            if (!textFieldRotate.getText().equals("")) {
+                Rotate rotate = new Rotate(Double.parseDouble(textFieldRotate.getText()));
+                rotate.rotateFigure(points);
+            }
             fieldPanel.repaint();
         });
     }

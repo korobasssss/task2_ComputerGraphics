@@ -3,9 +3,9 @@ package cs.vsu.ruKorobeynikova_A_V.transformations;
 import java.util.List;
 
 public class Scaling {
-    int x; int y;
+    double x; double y;
 
-    public Scaling(int x, int y) {
+    public Scaling(double x, double y) {
         this.x = x;
         this.y = y;
     }
